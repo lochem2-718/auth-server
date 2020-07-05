@@ -1,7 +1,0 @@
-db_url: localhost
-db_name: authentication
-db_port: 5034
-db_username: jared
-db_password: weinberger
-server_port: 9000
-server_secret: Te8C33Fx%Q!H
