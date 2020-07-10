@@ -9,6 +9,6 @@ namespace AuthServer.Repository
         {
         }
 
-        public DbSet<Credential> Users { get; set; }
+        public DbSet<Identity> Identities { get; set; }
     }
 }

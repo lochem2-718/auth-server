@@ -9,5 +9,10 @@ namespace AuthServer.Controllers.Models
 
         [Required]
         public string Password { get; set; }
+
+        public override string ToString()
+        {
+            return "{ Username: " + Username + ", Password: " + Password + " }";
+        }
     }
 }

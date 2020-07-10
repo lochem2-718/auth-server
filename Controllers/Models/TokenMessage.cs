@@ -1,8 +1,6 @@
-using AuthServer.Entities;
-
 namespace AuthServer.Controllers.Models
 {
-    public class TokenResponse
+    public class TokenMessage
     {
         public string Token { get; set; }
     }
