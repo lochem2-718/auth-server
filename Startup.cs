@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authentication;
+using AuthServer.Entities;
+using AuthServer.Repository;
 
 
 
@@ -30,6 +33,12 @@ namespace AuthServer
                     builder.SetIsOriginAllowedToAllowWildcardSubdomains();
                 });
             });
+            services.AddDefaultIdentity<User>()
+                .AddEntityFrameworkStores<AuthContext>();
+            services.AddIdentityServer()
+                .AddApiAuthorization<User, AuthContext>();
+            services.AddAuthentication()
+                .AddIdentityServerJwt();
             services.AddControllers();
             services.AddLogging();
             var settingsSection = Configuration.GetSection("AppSettings");
@@ -47,7 +56,8 @@ namespace AuthServer
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
+            app.UseIdentityServer();
             app.UseRouting();
 
             app.UseCors();

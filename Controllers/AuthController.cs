@@ -50,7 +50,7 @@ namespace AuthServer.Controllers
             {
                 _repo
                     .Identities
-                    .Add(new Identity
+                    .Add(new User
                     {
                         Username = request.Username,
                         HashedPassword = hashPassword(request.Password)
@@ -120,7 +120,7 @@ namespace AuthServer.Controllers
         }
 
         [HttpGet("all")]
-        public ActionResult<IEnumerable<Identity>> GetAllIdentities()
+        public ActionResult<IEnumerable<User>> GetAllIdentities()
         {
             var requestSource = HttpContext.Connection.RemoteIpAddress.ToString();
             if (_settings.WhitelistedIps.Contains(requestSource))
